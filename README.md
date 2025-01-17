@@ -1,0 +1,1 @@
+# myDec2024WeekdayBatch
