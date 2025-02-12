@@ -5,5 +5,4 @@
 </head>
 <body>
 	<h2>We are automating CICD pipeline using Jenkins scripted pipeline!!! </h2>
-</body>
 </html>
