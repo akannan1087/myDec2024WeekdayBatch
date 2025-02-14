@@ -6,11 +6,6 @@ pipeline {
     }
     
     stages {
-        stage('Checkout') {
-            steps {
-                git branch: 'main', credentialsId: 'f94e27a7-d1ff-4a8e-b9a3-616dc88fc9f2', url: 'https://github.com/akannan1087/myDec2024WeekdayBatch'
-            }
-        }
         
         stage ("Build") {
             steps {
