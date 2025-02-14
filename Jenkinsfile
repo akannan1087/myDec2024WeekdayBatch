@@ -88,4 +88,10 @@ pipeline {
         }
       }
     }
+
+ post {
+        always {
+            echo 'This will always run, like a finally block!'
+        }
+    }
 }
