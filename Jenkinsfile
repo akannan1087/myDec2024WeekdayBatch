@@ -45,11 +45,52 @@ pipeline {
             }
         }
         
-            
         stage ("DEV notify") {
             steps {
                 slackSend channel: 'dec-2024-weekday-batch', message: 'Hi DEV team, your app has been deployed into DEV successfully. please start basic testing..'
             }
         }
+
+        //CD starts here..
+        stage ("DEV approval") {
+            steps {
+            echo "Taking approval from DEV Manager for QA Deployment"     
+            timeout(time: 2, unit: 'DAYS') {
+            input message: 'Do you approve QA Deployment?', submitter: 'admin,dev_mgr@gmail.com'
+            }
+        }
+     }
+     
+    stage ("QA deploy") {
+        steps {
+            deploy adapters: [tomcat9(credentialsId: '7e8c86ff-abae-4b19-b6ad-8b4fe4ccd761', path: '', url: 'http://ec2-54-175-41-38.compute-1.amazonaws.com:8090/')], contextPath: null, war: '**/*.war'
+        }
+    }
+    
+    stage ("QA notify") {
+        steps {
+            slackSend channel: 'dec-2024-weekday-batch,qa-testing-team', message: 'Hi QA team,  application has been deployed into QA env successfully. please start your functional testing..'
+        }
+    }
+    stage ("QA approval") {
+        steps {
+            echo "Taking approval from QA Manager for PROD Deployment"     
+            timeout(time: 2, unit: 'DAYS') {
+            input message: 'Do you approve PROD Deployment?', submitter: 'admin,dev_mgr@gmail.com'
+            }
+        }
+    }
+    
+    stage ("PROD deploy") {
+        steps {
+            deploy adapters: [tomcat9(credentialsId: '7e8c86ff-abae-4b19-b6ad-8b4fe4ccd761', path: '', url: 'http://ec2-54-175-41-38.compute-1.amazonaws.com:8090/')], contextPath: null, war: '**/*.war'
+        }
+    }
+    
+    stage ("final notify") {
+        steps {
+            slackSend channel: 'dec-2024-weekday-batch,qa-testing-team,product-owners-teams', message: 'Hi  team,  application has been deployed into prod env successfully. please inform end customers..'
+        }
+      }
     }
 }
