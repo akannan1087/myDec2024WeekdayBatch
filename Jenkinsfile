@@ -32,6 +32,8 @@ pipeline {
             steps {
                     timeout(time: 1, unit: 'HOURS') {
                     waitForQualityGate abortPipeline: true
+                    slackSend channel: 'dec-2024-weekday-batch', message: 'Hi DEV team, your app has been deployed into DEV successfully. please start basic testing..'
+
                 }
             }
         }
@@ -96,6 +98,12 @@ pipeline {
         }
       }
     }
+
+      post {
+        failure {
+            slackSend channel: 'dec-2024-weekday-batch,qa-testing-team,product-owners-teams', message: 'Hi  team, pipeline build failed..please take a look at it'
+        }
+      }
 
 
 }
