@@ -1,8 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<title>Some relevant title</title>
-</head>
+<html>
 <body>
-	<h2>We are automating CICD pipeline using Jenkins scripted pipeline!!! </h2>
+<h2>We are testing Sonarqube quality gate with SonarQube, we are learning how to make build to fail if there are to many errors or bugs in the code!!! </h2>
 </html>
