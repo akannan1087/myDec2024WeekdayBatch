@@ -35,13 +35,13 @@ pipeline {
                 }
             }
         }
-        
+        /**
         stage ("Binary upload") {
             steps {
                     //nexusArtifactUploader artifacts: [[artifactId: 'MyWebApp', classifier: '', file: 'MyWebApp/target/MyWebApp.war', type: 'war']], credentialsId: '019d12fb-b008-440e-8509-fcd92630e7fc', groupId: 'com.dept.app', nexusUrl: 'ec2-54-242-207-203.compute-1.amazonaws.com:8081/', nexusVersion: 'nexus3', protocol: 'http', repository: 'maven-snapshots', version: '1.0-SNAPSHOT'
                 }
             }
-            
+           **/ 
         stage ("DEV deploy") {
             steps {
                 deploy adapters: [tomcat9(credentialsId: '7e8c86ff-abae-4b19-b6ad-8b4fe4ccd761', path: '', url: 'http://ec2-54-166-218-97.compute-1.amazonaws.com:8080/')], contextPath: null, war: '**/*.war'
