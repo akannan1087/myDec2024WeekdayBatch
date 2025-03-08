@@ -17,10 +17,12 @@ jobs:
           java-version: '11'
       - name: Build with Maven
         run: mvn clean install -f MyWebApp/pom.xml
+      - name: Verify WAR File
+        run: ls -l target/
       - name: Deploy to Tomcat
         run: |
           curl -v -u ${{ secrets.TOMCAT_USER }}:${{ secrets.TOMCAT_PASSWORD }} \
-          -T target/*.war \
+          -T target/MyWebApp.war \
           "http://ec2-54-234-97-11.compute-1.amazonaws.com:8090/manager/text/deploy?path=/MyWebApp&update=true"
           
       - uses: act10ns/slack@v2
