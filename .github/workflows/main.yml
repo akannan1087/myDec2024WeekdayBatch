@@ -4,7 +4,7 @@ on:
     branches: ["main"]
 jobs:
   build: 
-    runs-on: self-hosted
+    runs-on: ubuntu-24.0.4
     env:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     steps:
@@ -17,16 +17,12 @@ jobs:
           java-version: '11'
       - name: Build with Maven
         run: mvn clean install -f MyWebApp/pom.xml
-      - name: SonarQube Scan
-        uses: sonarsource/sonarqube-scan-action@master
-        with:
-          projectBaseDir: .
-          args: >
-            -Dsonar.organization=my-company
-            -Dsonar.projectKey=my-Java-project
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      - name: Deploy to Tomcat
+        run: |
+          curl -v -u ${{ secrets.TOMCAT_USER }}:${{ secrets.TOMCAT_PASSWORD }} \
+          -T target/*.war \
+          "http://ec2-54-234-97-11.compute-1.amazonaws.com:8090/manager/text/deploy?path=/MyWebApp&update=true"
+          
       - uses: act10ns/slack@v2
         with:
           channel: '#dec-2024-weekday-batch'
