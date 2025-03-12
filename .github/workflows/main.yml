@@ -28,7 +28,7 @@ jobs:
         run: |
           curl -v -u ${{ secrets.NEXUS_USER }}:${{ secrets.NEXUS_PASSWORD }} \
           --upload-file MyWebApp/target/MyWebApp.war \
-          http://ec2-34-236-148-33.compute-1.amazonaws.com:8081/maven-snapshots:com/gcp/myapp-1.0.0.war
+          http://ec2-34-236-148-33.compute-1.amazonaws.com:8081/repository/maven-snapshots:com/gcp/myapp-1.0.0.war
       - uses: act10ns/slack@v2
         with:
           channel: '#dec-2024-weekday-batch'
