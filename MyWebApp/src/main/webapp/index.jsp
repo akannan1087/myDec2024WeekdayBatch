@@ -4,5 +4,5 @@
 	<head>
 		<title>Some relevant title</title>
 		</head>
-<h2>We are deploying Java WAR to Tomcat using Github actions!!! </h2>
+<h2>We are deploying Java WebApp into Azure Cloud using Azure DevOps Classis pipeline !!! </h2>
 </html>
