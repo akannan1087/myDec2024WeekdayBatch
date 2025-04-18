@@ -4,5 +4,11 @@
 	<head>
 		<title>Some relevant title</title>
 		</head>
-<h2>We are deploying Java WebApp into Azure Cloud using Azure DevOps Classis pipeline !!! </h2>
+<h2>We are deploying Java WebApp into Azure Cloud using Azure DevOps YAML pipeline !!! </h2>
+<h2>We are deploying Java WebApp into Azure Cloud using Azure DevOps YAML pipeline !!! </h2>
+<h2>We are deploying Java WebApp into Azure Cloud using Azure DevOps YAML pipeline !!! </h2>
+<h2>We are deploying Java WebApp into Azure Cloud using Azure DevOps YAML pipeline !!! </h2>
+<h2>We are deploying Java WebApp into Azure Cloud using Azure DevOps YAML pipeline !!! </h2>
+<h2>We are deploying Java WebApp into Azure Cloud using Azure DevOps YAML pipeline !!! </h2>
+
 </html>
